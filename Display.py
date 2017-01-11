@@ -4,7 +4,10 @@ from TicTacToe import *;
 ##Print prompts ('Player X/O, your move')
 ##Print victory (X wins/O wins/ Cat's Game!)
 def gameLoop():
-    #Terminating Condition: X has not won, O has not won, and there are still spaces.
+    ##Terminating Condition:
+    ##X has won,
+    ##O has won,
+    ##or there are no more viable spaces
     while checkVictory(playerX) == False and checkVictory(playerO) == False and checkCatsGame() == False:
         printPlayerPrompt();
         printCurrentGameBoard();
@@ -33,9 +36,9 @@ def printVictoryMessage(playerTurn):
     
 def printPlayerPrompt():
     if(getActivePlayer()):
-        print("It is Display O's Turn.");
+        print("It is O's Turn.");
     else:
-        print("It is Display X's Turn.");
+        print("It is X's Turn.");
     space = input("Which space will you pick?  ");
     handlePlayerInput(space);
         
@@ -44,19 +47,19 @@ def handlePlayerInput(inputString):
     ##If the input is 1-9, then that is a valid space.
     ##If it is a string, then we can't do anything with it.
     try:
-        x = True;
+        retry = True;
         if(int(inputString) in range(1,10) and checkSpace(int(inputString))):
-            while x==True:
+            while retry ==True:
                 if(getActivePlayer()):
                     if(playerSpaceAdded(playerO, int(inputString))==True):
-                        x = False;
+                        retry = False;
                         updateActivePlayer();
                     else:
                         print("FAILED.  TRY AGAIN.");
                 else:
                     if(playerSpaceAdded(playerX, int(inputString))==True):
                         addSpace(playerX, int(inputString));
-                        x = False;
+                        retry = False;
                         updateActivePlayer();
                     else:
                         print("FAILED.  TRY AGAIN.");

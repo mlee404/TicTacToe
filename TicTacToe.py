@@ -26,10 +26,6 @@ playerTurn = False; ##False = X, True = O
 
 ##Who's turn is it?
 def getActivePlayer():
-    if(playerTurn is False):
-        print("It is now X's turn.");
-    else:
-        print("It is now O's turn.");
     return playerTurn;
 
 ##Switch who is next.  This is called after the "active player" has moved.
@@ -62,7 +58,6 @@ def checkSpace(space):
 ##Must have three in a row for victory condition.
 def checkVictory(playerList):
     if(len(playerList) >=3):
-        print("Victory?");
         if(checkHorizontalVictory(playerList) or checkVerticalVictory(playerList) or checkDiagonalVictory(playerList)):
             return True;
         else:
@@ -102,6 +97,7 @@ def checkDiagonalVictory(playerList):
         return True;
     else:
         return False;
+
 #Cat's Game is all spaces are taken and there is no clear victor.
 def checkCatsGame():
     if(len(playerX) + len(playerO) >=9):
