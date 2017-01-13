@@ -63,14 +63,16 @@ def handlePlayerInput(inputString):
                 if(getActivePlayer()):
                     if(playerSpaceAdded(playerO, int(inputString))==True):
                         retry = False;
-                        updateActivePlayer();
+                        if(checkVictory(playerO)==False):
+                            updateActivePlayer();
                     else:
                         print("FAILED.  TRY AGAIN.");
                 else:
                     if(playerSpaceAdded(playerX, int(inputString))==True):
                         addSpace(playerX, int(inputString));
                         retry = False;
-                        updateActivePlayer();
+                        if(checkVictory(playerX)==False):
+                            updateActivePlayer();
                     else:
                         print("FAILED.  TRY AGAIN.");
 
