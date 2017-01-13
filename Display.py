@@ -3,6 +3,9 @@ from TicTacToe import *;
 ##Print current game.
 ##Print prompts ('Player X/O, your move')
 ##Print victory (X wins/O wins/ Cat's Game!)
+
+##Primary game loop.  For as long as there is no clear victor, allow
+##players to make a move then update the gameboard.
 def gameLoop():
     ##Terminating Condition:
     ##X has won,
@@ -12,9 +15,11 @@ def gameLoop():
         printPlayerPrompt();
         printCurrentGameBoard();
     if(checkVictory(playerX) == True or checkVictory(playerO) == True):
-        printVictoryMessage(playerTurn);
+        printVictoryMessage(getActivePlayer());
     else:    
         print("Cat Game.");
+
+    printReplayPrompt();
 
 #Print the state of the game board.
 def printCurrentGameBoard():
@@ -27,8 +32,8 @@ def printCurrentGameBoard():
         if i%3 == 0:
             print("\n");
 
-def printVictoryMessage(playerTurn):
-    if(playerTurn):
+def printVictoryMessage(player):
+    if(player):
         print("VICTORY TO PLAYER O!");
     else:
         print("VICTORY TO PLAYER X!");
@@ -41,7 +46,12 @@ def printPlayerPrompt():
         print("It is X's Turn.");
     space = input("Which space will you pick?  ");
     handlePlayerInput(space);
-        
+
+def printReplayPrompt():
+    replay = input("Would you like to play again?");
+    if(str(replay) == "Yes"):
+        Reset();
+        gameLoop();
 
 def handlePlayerInput(inputString):
     ##If the input is 1-9, then that is a valid space.
@@ -63,12 +73,8 @@ def handlePlayerInput(inputString):
                         updateActivePlayer();
                     else:
                         print("FAILED.  TRY AGAIN.");
-                print(" IS A NUMBER.");
 
         else:
             print("IS NOT A VALID NUMBER.");
     except ValueError:
         print("That's not a valid space!");
-        
-    
-    print("Handle it!");

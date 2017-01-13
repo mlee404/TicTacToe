@@ -104,3 +104,8 @@ def checkCatsGame():
         print("Cat's Game.");
         return True;
     return False;
+
+def Reset():
+    del playerX[:];
+    del playerO[:];
+    updateActivePlayer();
