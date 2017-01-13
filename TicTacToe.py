@@ -108,4 +108,5 @@ def checkCatsGame():
 def Reset():
     del playerX[:];
     del playerO[:];
-    updateActivePlayer();
+    global playerTurn;
+    playerTurn = False;
